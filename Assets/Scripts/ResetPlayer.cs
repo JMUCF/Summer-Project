@@ -12,7 +12,10 @@ public class ResetPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        /*foreach (var player in PlayerManager.Instance.players)
+        [
+            ResetPlayerPosition(players[i], i);
+        ]*/
     }
 
     // Update is called once per frame
@@ -23,7 +26,7 @@ public class ResetPlayer : MonoBehaviour
 
         for(int i = 0; i < players.Length; i++)
         {
-            if(players[i].transform.position.y < -10)
+            if((players[i].transform.position.y < -10) || (players[i].transform.position.y > 15))
                 ResetPlayerPosition(players[i], i);
         }
     }
@@ -31,9 +34,9 @@ public class ResetPlayer : MonoBehaviour
     void ResetPlayerPosition(GameObject player, int i)
     {
         //Debug.Log(player.transform.position);
-        player.SetActive(false);
+        //player.SetActive(false);
         player.transform.position = spawnPoints[i].transform.position;
-        player.SetActive(true);
+        //player.SetActive(true);
         //Debug.Log(spawnPoints[i].transform.position);
     }
 }
