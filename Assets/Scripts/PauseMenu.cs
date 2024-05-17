@@ -10,11 +10,14 @@ public class PauseMenu : MonoBehaviour
     private bool controllerPriority = false;
     
     public GameObject pauseMenuUI;
-    //public GameObject panelHowToPlay;
+    public GameObject panelHowToPlay;
+    public GameObject panelSettings;
 
-    public GameObject resume;
-    //public GameObject HowToPlay;
-    //public GameObject closeHowToPlay;
+    public GameObject btnResume;
+    public GameObject btnHowToPlay;
+    public GameObject closeHowToPlay;
+    public GameObject btnSettings;
+    public GameObject closeSettings;
 
     private void Start()
     {
@@ -39,11 +42,13 @@ public class PauseMenu : MonoBehaviour
             }else if(!GameIsPaused && controllerPriority){
                 Pause();
                 EventSystem.current.sendNavigationEvents = true;
-                EventSystem.current.SetSelectedGameObject(resume);
-                //panelHowToPlay.SetActive(false);
+                EventSystem.current.SetSelectedGameObject(btnResume);
+                panelHowToPlay.SetActive(false);
+                panelSettings.SetActive(false);
             }else{              
                 Pause();
-                //panelHowToPlay.SetActive(false);
+                panelHowToPlay.SetActive(false);
+                panelSettings.SetActive(false);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -74,7 +79,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
     }
 
-    /*public void HowToPlay()
+    public void HowToPlay()
     {
         panelHowToPlay.SetActive(true);
         EventSystem.current.SetSelectedGameObject(closeHowToPlay);
@@ -83,6 +88,18 @@ public class PauseMenu : MonoBehaviour
     public void exitHowToPlay()
     {
         panelHowToPlay.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(HowToPlay);
-    }*/
+        EventSystem.current.SetSelectedGameObject(btnHowToPlay);
+    }
+    
+    public void Settings()
+    {
+        panelSettings.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(closeSettings);
+    }
+
+    public void exitSettings()
+    {
+        panelSettings.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(btnSettings);
+    }
 }
