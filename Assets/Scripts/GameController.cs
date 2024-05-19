@@ -25,6 +25,6 @@ public class GameController : MonoBehaviour
         // Optionally, you can set properties of the instantiated player based on player data
         // For example:
         PlayerInput playerInput = instantiatedPlayer.gameObject.GetComponent<PlayerInput>();
-        playerInput.SwitchCurrentControlScheme("Controller", player.playerDevice);
+        playerInput.SwitchCurrentControlScheme(player.controlScheme, player.playerDevice);
     }
 }

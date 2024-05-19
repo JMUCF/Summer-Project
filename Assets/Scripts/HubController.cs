@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class HubController : MonoBehaviour
 {
     private PlayerInputManager playerInputManager;
-    private int counter = 1;
 
     private void Awake()
     {
