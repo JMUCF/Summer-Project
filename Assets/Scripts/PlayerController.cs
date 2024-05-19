@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
 
     private Vector2 movementInput = Vector2.zero;
+    private Vector2 lookInput = Vector2.zero;
     private bool jumped = false;
     #endregion
 
@@ -27,9 +28,19 @@ public class PlayerController : MonoBehaviour
         movementInput = context.ReadValue<Vector2>();
     }
 
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        lookInput = context.ReadValue<Vector2>();
+    }
+
     public void OnJump(InputAction.CallbackContext context)
     {
         jumped = context.action.triggered;
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+
     }
 
     void Update()
@@ -42,6 +53,9 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
         controller.Move(move * Time.deltaTime * playerSpeed);
+
+        var targetAngle = Mathf.Atan2(lookInput.x, lookInput.y) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0.0f, targetAngle-90, 0.0f);
 
         if (jumped && groundedPlayer)
         {

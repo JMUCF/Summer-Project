@@ -28,6 +28,12 @@ public class ResetPlayer : MonoBehaviour
         }
     }
 
+    
+    /// JUST HAD AN EPIPHANY ITS PROBABLY NOT THE PLAYER INPUT COMPONENT OVERRIDING THE TRANSFORM POSITION, IT'S PROBABLY THE CHARACTER CONTROLLER. LOOK INTO TEMPORARILY DISABLING THAT AND MOVING THE POSITION AS OPPOSED TO TURNING OFF THE WHOLE CHARACTER OR DEACTIVATING THE PLAYER INPUT COMPONENT
+
+    //https://docs.unity3d.com/ScriptReference/Component-transform.html
+
+
     void ResetPlayerPosition(GameObject player, int i)
     {
         Debug.Log("in reset players position + " + player + " " + i);
