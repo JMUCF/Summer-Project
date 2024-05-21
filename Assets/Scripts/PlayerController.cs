@@ -28,9 +28,13 @@ public class PlayerController : MonoBehaviour
         movementInput = context.ReadValue<Vector2>();
     }
 
-    public void OnLook(InputAction.CallbackContext context)
+    public void OnLook(InputAction.CallbackContext context) //only works for controller atm. will probably need some distinction for what code is ran based on what the individual player's control scheme is
     {
         lookInput = context.ReadValue<Vector2>();
+
+        if (lookInput.sqrMagnitude == 0) return; //don't reset rotation on no input
+        var targetAngle = Mathf.Atan2(lookInput.x, lookInput.y) * Mathf.Rad2Deg; //turn joystick angle position into rotation angle
+        transform.rotation = Quaternion.Euler(0.0f, targetAngle-90, 0.0f); //change angle
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -53,9 +57,6 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
         controller.Move(move * Time.deltaTime * playerSpeed);
-
-        var targetAngle = Mathf.Atan2(lookInput.x, lookInput.y) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0.0f, targetAngle-90, 0.0f);
 
         if (jumped && groundedPlayer)
         {
