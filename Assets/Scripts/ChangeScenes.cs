@@ -10,15 +10,15 @@ public class ChangeScenes : MonoBehaviour
     //public GameObject loadingScreen;
 
     // This function will make it so if you press the play button, you will be moved to the next scene (game) 
-    /*public void PlayButton()
+    public void PlayButton()
     {
-        StartCoroutine(PlayAndLoad(""));
+        StartCoroutine(PlayAndLoad("TerrainTests"));
     }
 
-    public void HubWorld()
+    public void Main()
     {
         StartCoroutine(PlayAndLoad("SampleScene"));
-    }*/
+    }
 
     // This function will make it so if you press the quit button, the application will close
     public void QuitButton()
