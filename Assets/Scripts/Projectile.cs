@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float projectileSpeed = 5.0f;
     [SerializeField] private float launchHeight = 5.0f;
+    public GameObject hitBox;
     private Vector3 projectileVelocity;
     private Rigidbody rb;
 
@@ -20,6 +21,7 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        GameObject hitBoxObject = Instantiate(hitBox, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 }

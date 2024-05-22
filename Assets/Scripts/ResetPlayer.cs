@@ -20,7 +20,7 @@ public class ResetPlayer : MonoBehaviour
 
         for(int i = 0; i < players.Length; i++)
         {
-            if((players[i].transform.position.y < -10) || (players[i].transform.position.y > 15))
+            if((players[i].transform.position.y < -10) /*|| (players[i].transform.position.y > 15)*/) //disabled height one so player can be teleported into sky while dead
                 ResetPlayerPosition(players[i], i);
         }
     }
