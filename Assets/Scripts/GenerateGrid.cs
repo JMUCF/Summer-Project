@@ -6,8 +6,8 @@ public class GenerateGrid : MonoBehaviour
     public Transform blockParent;
     public GameObject spawnPointObject;
     public GameObject[] spawnPointParents;
-    private int worldSizeX = 21; //make sure world sizes are odd numbers so that spawn points get placed exactly in the center of things
-    private int worldSizeZ = 21;
+    private int worldSizeX = 31; //make sure world sizes are odd numbers so that spawn points get placed exactly in the center of things
+    private int worldSizeZ = 31;
     private int noiseHeight = 4;
     private int gridOffset = 1;
 

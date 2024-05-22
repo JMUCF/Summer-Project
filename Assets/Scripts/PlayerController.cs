@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float playerSpeed = 4.0f;
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
+
     public GameObject projectilePrefab;
+    private bool canAttack = true;
 
     private CharacterController controller;
     private Vector3 playerVelocity;
@@ -45,9 +49,14 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        Vector3 spawnPosition = transform.position; //currently spawns on player position. Using .forward spawns it to the right of the player.
-
-        GameObject thrownObject = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
+        if(canAttack == false) return;
+        Transform projectilePoint = transform.Find("ProjectilePoint");
+        Vector3 spawnPosition = projectilePoint.position;
+        Vector3 currentRotation = transform.rotation.eulerAngles;
+        Quaternion spawnRotation = Quaternion.Euler(currentRotation.x, currentRotation.y + 90, currentRotation.z);
+        GameObject thrownObject = Instantiate(projectilePrefab, spawnPosition, spawnRotation);
+        canAttack = false;
+        StartCoroutine("AttackCooldown");
     }
 
     void Update()
@@ -68,5 +77,11 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(.25f);
+        canAttack = true;
     }
 }
