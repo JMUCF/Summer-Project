@@ -81,6 +81,7 @@ MonoBehaviour:
   playerSpeed: 4
   jumpHeight: 1
   gravityValue: -9.81
+  projectilePrefab: {fileID: 8560931238425525656, guid: 6cda93aa642fa4d49b0f36357e3307ea, type: 3}
 --- !u!114 &3356684156239209650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +140,19 @@ MonoBehaviour:
     m_ActionId: 9f5ceedc-108c-4860-889c-29066628974b
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1614793439789717587}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 34bb1d51-b1c4-4bed-91b8-5684ba3cca55
     m_ActionName: Player/Attack[/Mouse/leftButton]
   - m_PersistentCalls:

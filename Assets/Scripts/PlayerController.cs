@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float playerSpeed = 4.0f;
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
+    public GameObject projectilePrefab;
 
     private CharacterController controller;
     private Vector3 playerVelocity;
@@ -44,7 +45,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        Vector3 spawnPosition = transform.position; //currently spawns on player position. Using .forward spawns it to the right of the player.
 
+        GameObject thrownObject = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
     }
 
     void Update()
